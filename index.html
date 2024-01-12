@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<h1 id="tomorrow"></h1>
+
+<!-- <ul id="myList"></ul>
+
+<script>
+    let data = ["Ram", "Shyam", "Sita", "Gita"];
+    let list = document.getElementById("myList");
+    for (i = 0; i < data.length; ++i) {
+        let li = document.createElement('li');
+        li.innerText = data[i];
+        list.appendChild(li);
+    }
+</script> -->
+
+<script>
+    // Get tomorrow's date
+    var today = new Date();
+    var tomorrow = new Date(today.setDate(today.getDate() + 1));
+
+    // Get y-m-d
+    // Months start at 0
+    var year = tomorrow.getUTCFullYear();
+    var month = tomorrow.getUTCMonth() + 1;
+    var day = tomorrow.getUTCDate();
+
+    // Insert date and time into HTML
+    document.getElementById("tomorrow").innerHTML = year + '-' + month + '-' + day;
+</script>
+
+</body>
+</html> 
