@@ -2,6 +2,7 @@
 
 <html>
     <head>
+        <!-- Functions for tomorrow's date -->
         <script src="src/scripts/tomorrow.js"></script>
     </head>
 
@@ -20,6 +21,16 @@
                 list.appendChild(li);
             }
         </script> -->
+
+        <script>
+            var tomorrow = format(tomorrow());
+
+            document.getElementById("tomorrow").innerHTML = tomorrow[0] +
+                "-" +
+                (tomorrow[1] + 1) +
+                "-" +
+                tomorrow[2];
+        </script>
 
     </body>
 </html>
