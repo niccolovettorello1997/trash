@@ -17,16 +17,34 @@
         <ul id="trashUl"></ul>
 
         <script>
-            // Array containing tomorrow's date
+            // Various formats for tomorrow's date
             var tomorrow = format(tomorrow());
+            var year = tomorrow[0];
+            var month = tomorrow[1] + 1;
+            var day = tomorrow[2];
+            var tomorrowDate = new Date(year + "-" + month + "-" + day);
 
             // Get trash for tomorrow
             let trashList = parse(
                 provider(),
-                tomorrow[0],
-                tomorrow[1] + 1,
-                tomorrow[2]
+                year,
+                month,
+                day
             );
+
+            // Fill with a conventional message if the result is the empty array
+            if (trashList.length === 0) {
+                trashList.push("Nessun rifiuto da portare fuori domani");
+            }
+
+            // Fill DOM elements
+            document.getElementById("tomorrow").innerHTML = weekDays()[tomorrowDate.getDay()] +
+                " " +
+                day +
+                " " +
+                months()[month] +
+                " " +
+                year;
 
             let list = document.getElementById("trashUl");
             for (i = 0; i < trashList.length; ++i) {
@@ -34,12 +52,6 @@
                 li.innerText = trashList[i];
                 list.appendChild(li);
             }
-
-            document.getElementById("tomorrow").innerHTML = tomorrow[0] +
-                "-" +
-                (tomorrow[1] + 1) +
-                "-" +
-                tomorrow[2];
         </script>
 
     </body>

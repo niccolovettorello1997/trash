@@ -1,4 +1,22 @@
 /**
+ * Returns an associative array for week days.
+ * 
+ * @returns Object
+ */
+function weekDays()
+{
+    return {
+        0: "DOMENICA",
+        1: "LUNEDI'",
+        2: "MARTEDI'",
+        3: "MERCOLEDI'",
+        4: "GIOVEDI'",
+        5: "VENERDI'",
+        6: "SABATO"
+    };
+}
+
+/**
  * Returns the date for tomorrow.
  * 
  * @returns Date
