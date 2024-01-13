@@ -2,6 +2,8 @@
 
 <html>
     <head>
+        <!-- Get actual data -->
+        <script src="src/resources/data.js"></script>
         <!-- Parser for trash data -->
         <script src="src/scripts/parser.js"></script>
         <!-- Functions for tomorrow's date -->
@@ -26,23 +28,7 @@
         </script>
 
         <script>
-            var tomorrow = format(tomorrow());
-
-            // Get trash for tomorrow
-            let trash = parse(
-                provider(),
-                tomorrow[0],
-                tomorrow[1] + 1,
-                tomorrow[2]
-            );
-
-            let list = document.getElementById("trash");
-
-            for (i = 0; i < data.length; ++i) {
-                let li = document.createElement('li');
-                li.innerText = data[i];
-                list.appendChild(li);
-            }
+            console.log(provider())
         </script>
 
     </body>
