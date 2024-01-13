@@ -14,21 +14,32 @@
 
         <h1 id="tomorrow">cccp</h1>
 
-        <ul id="trash"></ul>
+        <ul id="trashUl"></ul>
 
         <script>
             // Array containing tomorrow's date
             var tomorrow = format(tomorrow());
+
+            // Get trash for tomorrow
+            let trashList = parse(
+                provider(),
+                tomorrow[0],
+                tomorrow[1] + 1,
+                tomorrow[2]
+            );
+
+            let list = document.getElementById("trashUl");
+            for (i = 0; i < trashList.length; ++i) {
+                let li = document.createElement('li');
+                li.innerText = trashList[i];
+                list.appendChild(li);
+            }
 
             document.getElementById("tomorrow").innerHTML = tomorrow[0] +
                 "-" +
                 (tomorrow[1] + 1) +
                 "-" +
                 tomorrow[2];
-        </script>
-
-        <script>
-            console.log(provider())
         </script>
 
     </body>
