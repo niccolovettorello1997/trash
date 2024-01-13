@@ -2,6 +2,8 @@
 
 <html>
     <head>
+        <!-- Parser for trash data -->
+        <script src="src/scripts/parser.js"></script>
         <!-- Functions for tomorrow's date -->
         <script src="src/scripts/tomorrow.js"></script>
     </head>
@@ -10,17 +12,7 @@
 
         <h1 id="tomorrow">cccp</h1>
 
-        <!-- <ul id="myList"></ul>
-
-        <script>
-            let data = ["Ram", "Shyam", "Sita", "Gita"];
-            let list = document.getElementById("myList");
-            for (i = 0; i < data.length; ++i) {
-                let li = document.createElement('li');
-                li.innerText = data[i];
-                list.appendChild(li);
-            }
-        </script> -->
+        <ul id="trash"></ul>
 
         <script>
             // Array containing tomorrow's date
@@ -31,6 +23,26 @@
                 (tomorrow[1] + 1) +
                 "-" +
                 tomorrow[2];
+        </script>
+
+        <script>
+            var tomorrow = format(tomorrow());
+
+            // Get trash for tomorrow
+            let trash = parse(
+                provider(),
+                tomorrow[0],
+                tomorrow[1] + 1,
+                tomorrow[2]
+            );
+
+            let list = document.getElementById("trash");
+
+            for (i = 0; i < data.length; ++i) {
+                let li = document.createElement('li');
+                li.innerText = data[i];
+                list.appendChild(li);
+            }
         </script>
 
     </body>
