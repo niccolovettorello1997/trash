@@ -1,4 +1,3 @@
-import os
 import sys
 
 SOURCE_FOLDER = "raw"
@@ -25,9 +24,21 @@ def footer() -> str:
 """
 
 # Write javascript provider.
-# @param   str fileName
+# @param   str sourceFileName
 # @returns None
-def writeProvider(source: str) -> None:
-    print("default behaviour")
+def writeProvider(sourceFileName: str) -> None:
+    # Open input and output files
+    source = open(SOURCE_FOLDER + "/" + sourceFileName, "r")
+    target = open(TARGET_FILE, "w")
+    # Write header to target file
+    target.write(header() + "\n") 
+    # Write line by line from input file to the provider paying attention to string format
+    for line in source.readlines():
+        target.write("        \"" + line.rstrip("\n") + "\",\n")
+    # Write footer to target file
+    target.write(footer())
+    # Close input and output files
+    source.close()
+    target.close()
 
 writeProvider(sys.argv[1])
