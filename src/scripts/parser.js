@@ -126,7 +126,7 @@ function execute(data, year, month, day)
     // Find the index of the next "=" symbol. If the selection fails, return array with error message
     var yMEnd = 0;
     for (let i = yMIndex; (i < data.length) && (yMEnd === 0); i++) {
-        if (data[i] === "=") {
+        if (data[i].includes("=")) {
             yMEnd = i;
         }
     }
@@ -155,33 +155,11 @@ function execute(data, year, month, day)
         );
     }
 
-    /* Find the index of the next string starting with '|' or '='. Throw an error message if
-     * needed */
-    var dEnd = 0;
-    for (let i = dIndex + 1; (i < yMSubset.length) && (dEnd === 0); i++) {
-        if ((yMSubset[i] === '=') || (yMSubset[i].includes('|'))) {
-            dEnd = i;
-        }
-    }
-    if (dEnd === 0) {
-        return errorMessage(
-            "Could not find the end of the specified day subset",
-            year,
-            month,
-            day
-        );
-    }
-
-    // Select the subset of strings representing data for the specified day
-    var dSubset = yMSubset.slice(dIndex, dEnd);
-
     // Try to match trash on the strings constituting the day data and return the matches
     var result = [];
-    trash().forEach((trash) =>{
-        for (let i = 0; i < dSubset.length; i++) {
-            if (dSubset[i].includes(trash)) {
-                result.push(trash);
-            }
+    trash().forEach((trash) => {
+        if (yMSubset[dIndex].includes(trash)) {
+            result.push(trash);
         }
     });
 
